@@ -1,6 +1,6 @@
 {
   "name": "qunit-sinon-assertions",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Sinon assertions for QUnit with custom messages support.",
   "keywords": [
     "ember-addon"

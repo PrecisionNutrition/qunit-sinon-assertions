@@ -54,14 +54,14 @@ The `assert.spy` will be:
 ember install @precision-nutrition/qunit-sinon-assertions
 ```
 
-Import `@precision-nutrition/qunit-sinon-assertions/test-support` module in `tests/test-helper.js` file:
+Import `qunit-sinon-assertions/test-support` module in `tests/test-helper.js` file:
 
 ```js
 import Application from '../app';
 import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
 import { start } from 'ember-qunit';
-import '@precision-nutrition/qunit-sinon-assertions/test-support';
+import 'qunit-sinon-assertions/test-support';
 
 setApplication(Application.create(config.APP));
 

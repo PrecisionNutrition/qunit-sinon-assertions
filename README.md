@@ -101,6 +101,8 @@ You can use [Sinon matchers](https://sinonjs.org/releases/latest/matchers/) with
 assert.spy(fn).didNotReturnWith(sinon.match({ id: 1 }));
 ```
 
+Here is an example of using the assertions in a real project: [ember-on-resize-modifier tests](https://github.com/PrecisionNutrition/ember-on-resize-modifier/blob/master/tests/integration/modifiers/on-resize-test.js)
+
 Name your stand alone `spies` for better error messages:
 
 ```js

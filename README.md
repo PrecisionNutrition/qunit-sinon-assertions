@@ -13,7 +13,10 @@ Let's say we have this test code:
 const emitStub = sinon.stub().named('emit');
 emitStub('model-loaded-worng');
 
-assert.ok(emitStub.calledWithExactly('model-loaded'), 'emit was called with "loaded"')
+assert.ok(
+  emitStub.calledWithExactly('model-loaded'),
+  'emit was called with "loaded"'
+);
 
 assert.spy(emitStub).calledWithExactly(['model-loaded']);
 ```
@@ -35,7 +38,8 @@ emitStub('model-loaded-worng');
 assert.ok(emitStub.calledWithExactly('model-loaded'));
 assert.ok(emitStub.returned('job is done!'));
 
-assert.spy(emitStub)
+assert
+  .spy(emitStub)
   .calledWithExactly(['model-loaded'])
   .returnedWith('job is done!');
 ```
@@ -50,25 +54,35 @@ The `assert.spy` will be:
 
 ## Installation
 
+First, install the addon:
+
 ```
-ember install @precision-nutrition/qunit-sinon-assertions
+ember install qunit-sinon-assertions
 ```
 
-Import `qunit-sinon-assertions/test-support` module in `tests/test-helper.js` file:
+Next, import `qunit-sinon-assertions` module anywhere in your `tests/test-helper.js` file:
+
+```js
+// This will make `assert.spy()` API available in your tests.
+import 'qunit-sinon-assertions';
+```
+
+It's also recommended to install [`ember-sinon-qunit`](https://github.com/elwayman02/ember-sinon-qunit) to get automatic sinon cleanup after each test. With both addons your config can look like this:
 
 ```js
 import Application from '../app';
 import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
 import { start } from 'ember-qunit';
-import 'qunit-sinon-assertions/test-support';
+import setupSinon from 'ember-sinon-qunit';
+import 'qunit-sinon-assertions';
 
 setApplication(Application.create(config.APP));
 
+setupSinon();
+
 start();
 ```
-
-This will make `assert.spy()` function available in your tests.
 
 ## Usage
 
@@ -84,7 +98,7 @@ assert.spy(fn)
 You can use [Sinon matchers](https://sinonjs.org/releases/latest/matchers/) with most assertions like this:
 
 ```js
-assert.spy(fn).didNotReturnWith(sinon.match({ id: 1 }))
+assert.spy(fn).didNotReturnWith(sinon.match({ id: 1 }));
 ```
 
 Name your stand alone `spies` for better error messages:

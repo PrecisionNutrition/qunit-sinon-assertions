@@ -1,25 +1,27 @@
-'use strict';
+import SinonAssertions from './lib/assertions';
 
-const Funnel = require('broccoli-funnel');
+export default function setup(assert) {
+  assert.spy = function (spy) {
+    validateSpy(spy);
+    return new SinonAssertions(spy, this);
+  };
+}
 
-module.exports = {
-  name: require('./package').name,
+function failValidation(spy) {
+  throw new Error(`qunit-sinon-assertions: ${spy} is not a spy`);
+}
 
-  isDevelopingAddon() {
-    return false;
-  },
+function validateSpy(spy) {
+  if (!spy) {
+    failValidation(spy);
+  }
 
-  // Make import shorter by using 'qunit-sinon-assertions'
-  // rather than `'qunit-sinon-assertions/test-support'
-  treeForAddonTestSupport(tree) {
-    const namespacedTree = new Funnel(tree, {
-      srcDir: '/',
-      destDir: `/${this.moduleName()}`,
-      annotation: `Addon#treeForTestSupport (${this.name})`,
-    });
+  if (spy.proxy && spy.proxy.isSinonProxy) {
+    validateSpy(spy.proxy);
+    return;
+  }
 
-    return this.preprocessJs(namespacedTree, '/', this.name, {
-      registry: this.registry,
-    });
-  },
-};
+  if (typeof spy !== 'function' || typeof spy.getCall !== 'function') {
+    failValidation(spy);
+  }
+}

@@ -57,14 +57,15 @@ The `assert.spy` will be:
 First, install the addon:
 
 ```
-ember install qunit-sinon-assertions
+yarn add -D qunit-sinon-assertions
 ```
 
 Next, import `qunit-sinon-assertions` module anywhere in your `tests/test-helper.js` file:
 
 ```js
 // This will make `assert.spy()` API available in your tests.
-import 'qunit-sinon-assertions';
+import setupSinonAssert from 'qunit-sinon-assertions';
+setupSinonAssert(QUnit.assert);
 ```
 
 It's also recommended to install [`ember-sinon-qunit`](https://github.com/elwayman02/ember-sinon-qunit) to get automatic sinon cleanup after each test. With both addons your config can look like this:
@@ -75,11 +76,12 @@ import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
 import { start } from 'ember-qunit';
 import setupSinon from 'ember-sinon-qunit';
-import 'qunit-sinon-assertions';
+import setupSinonAssert from 'qunit-sinon-assertions';
 
 setApplication(Application.create(config.APP));
 
 setupSinon();
+setupSinonAssert(QUnit.assert);
 
 start();
 ```
@@ -145,12 +147,6 @@ assert.spy(fn).lastNotCalledWithExactly([arg1, arg2)], message);
 assert.spy(fn).lastReturnedWith(value, message);
 assert.spy(fn).lastDidNotReturnWith(value, message);
 ```
-
-## Compatibility
-
-- Ember.js v3.12 or above
-- Ember CLI v2.13 or above
-- Node.js v10 or above
 
 ## Contributing
 

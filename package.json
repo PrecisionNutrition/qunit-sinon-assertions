@@ -1,6 +1,6 @@
 {
   "name": "qunit-sinon-assertions",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Sinon assertions for QUnit with custom messages support.",
   "keywords": [
     "qunit",

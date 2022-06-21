@@ -74,6 +74,7 @@ It's also recommended to install [`ember-sinon-qunit`](https://github.com/elwaym
 import Application from '../app';
 import config from '../config/environment';
 import { setApplication } from '@ember/test-helpers';
+import { setup } from 'qunit-dom';
 import { start } from 'ember-qunit';
 import setupSinon from 'ember-sinon-qunit';
 import setupSinonAssert from 'qunit-sinon-assertions';
@@ -81,6 +82,7 @@ import setupSinonAssert from 'qunit-sinon-assertions';
 setApplication(Application.create(config.APP));
 
 setupSinon();
+setup(QUnit.assert);
 setupSinonAssert(QUnit.assert);
 
 start();

@@ -93,7 +93,7 @@ It's possible to chain assertions:
 ```js
 assert.spy(fn)
   .calledTwice('should be called twice')
-  .calledWith([arg1, arg2)], 'with these args')
+  .calledWith([arg1, arg2], 'with these args')
   .returnedWith(value);
 ```
 
@@ -126,11 +126,11 @@ assert.spy(fn).calledTimes(count, message);
 assert.spy(fn).calledOnce(message);
 assert.spy(fn).calledTwice(message);
 
-assert.spy(fn).calledWith([arg1, arg2)], message);
-assert.spy(fn).notCalledWith([arg1, arg2)], message);
+assert.spy(fn).calledWith([arg1, arg2], message);
+assert.spy(fn).notCalledWith([arg1, arg2], message);
 
-assert.spy(fn).calledWithExactly([arg1, arg2)], message);
-assert.spy(fn).notCalledWithExactly([arg1, arg2)], message);
+assert.spy(fn).calledWithExactly([arg1, arg2], message);
+assert.spy(fn).notCalledWithExactly([arg1, arg2], message);
 
 assert.spy(fn).returnedWith(value, message);
 assert.spy(fn).didNotReturnWith(value, message);
@@ -138,11 +138,11 @@ assert.spy(fn).didNotReturnWith(value, message);
 assert.spy(fn).threw(message);
 assert.spy(fn).threwWith(exception, message);
 
-assert.spy(fn).lastCalledWith([arg1, arg2)], message);
-assert.spy(fn).lastNotCalledWith([arg1, arg2)], message);
+assert.spy(fn).lastCalledWith([arg1, arg2], message);
+assert.spy(fn).lastNotCalledWith([arg1, arg2], message);
 
-assert.spy(fn).lastCalledWithExactly([arg1, arg2)], message);
-assert.spy(fn).lastNotCalledWithExactly([arg1, arg2)], message);
+assert.spy(fn).lastCalledWithExactly([arg1, arg2], message);
+assert.spy(fn).lastNotCalledWithExactly([arg1, arg2], message);
 
 assert.spy(fn).lastReturnedWith(value, message);
 assert.spy(fn).lastDidNotReturnWith(value, message);
